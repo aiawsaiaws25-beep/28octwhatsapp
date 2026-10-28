@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "api/webhook.js": {
+      "includeFiles": "data.js",
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [{ "source": "/webhook", "destination": "/api/webhook" }]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "skyline-homes-whatsapp",
+  "private": true,
+  "description": "Dubai real estate website with an OpenAI-powered WhatsApp auto-reply bot",
+  "scripts": {
+    "start": "node bot/server.js",
+    "try": "node bot/try.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

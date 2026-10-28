@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skyline Homes Dubai</title>
+  <meta name="description" content="Buy and rent apartments, villas and townhouses in Dubai. Chat with an agent on WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a href="#top" class="logo">
+        <span class="logo__mark">S</span>
+        <span>Skyline<b>Homes</b></span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="#listings" data-filter-purpose="buy">Buy</a>
+        <a href="#listings" data-filter-purpose="rent">Rent</a>
+        <a href="#areas">Areas</a>
+        <a href="#calculator">Mortgage</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <button class="icon-btn" id="favToggle" aria-label="Show saved properties" title="Saved properties">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 21s-7.5-4.6-10-9.2C.4 8.6 2.3 4.5 6.2 4.5c2.2 0 3.6 1.2 4.3 2.4h3c.7-1.2 2.1-2.4 4.3-2.4 3.9 0 5.8 4.1 4.2 7.3C19.5 16.4 12 21 12 21z" transform="translate(0 -1)"/></svg>
+          <span class="badge" id="favCount">0</span>
+        </button>
+        <a class="btn btn--wa btn--sm" target="_blank" rel="noopener" data-wa="Hello! I'm interested in properties in Dubai.">
+          <svg class="wa-icon" viewBox="0 0 32 32"><use href="#wa" /></svg>
+          <span class="hide-sm">WhatsApp</span>
+        </a>
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__overlay"></div>
+    <div class="container hero__content">
+      <p class="eyebrow">Dubai's trusted property partner</p>
+      <h1>Find your next home in <span>Dubai</span></h1>
+      <p class="hero__sub">Apartments, villas and penthouses for sale and rent, and an agent on WhatsApp when you want one.</p>
+
+      <form class="search" id="searchForm">
+        <div class="search__tabs" role="tablist">
+          <button type="button" class="tab is-active" data-purpose="all">All</button>
+          <button type="button" class="tab" data-purpose="buy">Buy</button>
+          <button type="button" class="tab" data-purpose="rent">Rent</button>
+        </div>
+        <div class="search__fields">
+          <label class="field">
+            <span>Location</span>
+            <input type="text" id="qText" placeholder="e.g. Dubai Marina, Palm" list="areaList" />
+            <datalist id="areaList"></datalist>
+          </label>
+          <label class="field">
+            <span>Type</span>
+            <select id="qType">
+              <option value="">Any type</option>
+              <option>Apartment</option>
+              <option>Villa</option>
+              <option>Townhouse</option>
+              <option>Penthouse</option>
+              <option>Studio</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Bedrooms</span>
+            <select id="qBeds">
+              <option value="">Any</option>
+              <option value="0">Studio</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+              <option value="5">5+</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Max price (AED)</span>
+            <select id="qPrice">
+              <option value="">No max</option>
+              <option value="100000">100K</option>
+              <option value="200000">200K</option>
+              <option value="1500000">1.5M</option>
+              <option value="3000000">3M</option>
+              <option value="6000000">6M</option>
+              <option value="15000000">15M</option>
+            </select>
+          </label>
+          <button class="btn btn--primary search__btn" type="submit">Search</button>
+        </div>
+      </form>
+
+      <div class="stats">
+        <div><b>1,200+</b><span>Properties listed</span></div>
+        <div><b>15</b><span>Communities</span></div>
+        <div><b>4.9★</b><span>Client rating</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Listings -->
+  <section class="section" id="listings">
+    <div class="container">
+      <div class="section__head">
+        <div>
+          <p class="eyebrow">Featured listings</p>
+          <h2 id="listingsTitle">Properties for you</h2>
+        </div>
+        <div class="toolbar">
+          <span class="result-count" id="resultCount"></span>
+          <select id="sortBy" aria-label="Sort by">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+            <option value="size-desc">Largest first</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid" id="grid"></div>
+      <div class="empty" id="empty" hidden>
+        <h3>No properties match your search</h3>
+        <p>Tell us what you're looking for on WhatsApp and we'll send you matching off-market options.</p>
+        <a class="btn btn--wa" target="_blank" rel="noopener" id="emptyWa">Ask an agent on WhatsApp</a>
+        <button class="btn btn--ghost" id="resetBtn">Reset filters</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Areas -->
+  <section class="section section--alt" id="areas">
+    <div class="container">
+      <p class="eyebrow">Explore</p>
+      <h2>Popular communities</h2>
+      <div class="areas" id="areasGrid"></div>
+    </div>
+  </section>
+
+  <!-- Mortgage calculator -->
+  <section class="section" id="calculator">
+    <div class="container calc">
+      <div class="calc__intro">
+        <p class="eyebrow">Plan your purchase</p>
+        <h2>Mortgage calculator</h2>
+        <p>Get a rough monthly payment. UAE banks typically finance up to 80% for first-time expat buyers on properties under AED 5M.</p>
+        <a class="btn btn--wa" target="_blank" rel="noopener" id="calcWa">Discuss financing on WhatsApp</a>
+      </div>
+      <form class="calc__card" id="calcForm">
+        <label class="field">
+          <span>Property price (AED)</span>
+          <input type="number" id="cPrice" value="2000000" min="100000" step="50000" />
+        </label>
+        <label class="field">
+          <span>Down payment: <b id="cDownLabel">20%</b></span>
+          <input type="range" id="cDown" min="20" max="80" value="20" />
+        </label>
+        <div class="calc__row">
+          <label class="field">
+            <span>Interest rate (%)</span>
+            <input type="number" id="cRate" value="4.5" min="0" step="0.05" />
+          </label>
+          <label class="field">
+            <span>Term (years)</span>
+            <input type="number" id="cYears" value="25" min="1" max="30" />
+          </label>
+        </div>
+        <div class="calc__result">
+          <span>Estimated monthly payment</span>
+          <b id="cResult">AED 0</b>
+          <small id="cLoan"></small>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section section--dark" id="contact">
+    <div class="container contact">
+      <div>
+        <p class="eyebrow">Talk to us</p>
+        <h2>Tell us what you're looking for</h2>
+        <p>Fill in the form and it opens a WhatsApp chat with your details already typed in. An agent usually replies within minutes.</p>
+        <ul class="contact__list">
+          <li><b>WhatsApp / Phone</b><a href="tel:+971558775398">+971 55 877 5398</a></li>
+          <li><b>Office</b><span>Business Bay, Dubai, UAE</span></li>
+          <li><b>Hours</b><span>Mon–Sat, 9:00 – 20:00</span></li>
+        </ul>
+      </div>
+      <form class="contact__form" id="contactForm">
+        <div class="calc__row">
+          <label class="field"><span>Your name</span><input id="fName" required placeholder="Full name" /></label>
+          <label class="field">
+            <span>I want to</span>
+            <select id="fIntent">
+              <option>Buy</option>
+              <option>Rent</option>
+              <option>Sell my property</option>
+              <option>List for rent</option>
+            </select>
+          </label>
+        </div>
+        <div class="calc__row">
+          <label class="field"><span>Preferred area</span><input id="fArea" placeholder="e.g. Downtown" list="areaList" /></label>
+          <label class="field"><span>Budget (AED)</span><input id="fBudget" placeholder="e.g. 2,500,000" /></label>
+        </div>
+        <label class="field"><span>Message</span><textarea id="fMsg" rows="3" placeholder="Bedrooms, move-in date, anything else…"></textarea></label>
+        <button class="btn btn--wa btn--block" type="submit">
+          <svg class="wa-icon" viewBox="0 0 32 32"><use href="#wa" /></svg>
+          Send via WhatsApp
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year"></span> Skyline Homes Dubai. All rights reserved.</span>
+      <span>RERA-style listings shown are for demonstration.</span>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp button -->
+  <a class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" data-wa="Hello! I found you on Skyline Homes and have a question.">
+    <svg viewBox="0 0 32 32"><use href="#wa" /></svg>
+    <span class="wa-float__tip">Chat with us</span>
+  </a>
+
+  <!-- Property detail modal -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+      <button class="modal__close" data-close aria-label="Close">×</button>
+      <div class="gallery">
+        <img id="mImg" alt="" />
+        <button class="gallery__nav gallery__nav--prev" id="mPrev" aria-label="Previous photo">‹</button>
+        <button class="gallery__nav gallery__nav--next" id="mNext" aria-label="Next photo">›</button>
+        <div class="gallery__dots" id="mDots"></div>
+      </div>
+      <div class="modal__body">
+        <div class="modal__top">
+          <div>
+            <span class="pill" id="mPurpose"></span>
+            <h3 id="mTitle"></h3>
+            <p class="muted" id="mLoc"></p>
+          </div>
+          <div class="modal__price" id="mPrice"></div>
+        </div>
+        <div class="specs" id="mSpecs"></div>
+        <p id="mDesc"></p>
+        <h4>Amenities</h4>
+        <ul class="amenities" id="mAmen"></ul>
+        <div class="modal__actions">
+          <a class="btn btn--wa" target="_blank" rel="noopener" id="mWa">
+            <svg class="wa-icon" viewBox="0 0 32 32"><use href="#wa" /></svg>
+            Enquire on WhatsApp
+          </a>
+          <a class="btn btn--ghost" target="_blank" rel="noopener" id="mViewing">Book a viewing</a>
+          <a class="btn btn--ghost" href="tel:+971558775398">Call agent</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared WhatsApp glyph -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="wa" viewBox="0 0 32 32">
+      <path fill="currentColor" d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.2.6 4.4 1.7 6.3L3 29l7.3-1.9c1.8 1 3.8 1.5 5.8 1.5 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23.1c-1.9 0-3.7-.5-5.3-1.4l-.4-.2-4.3 1.1 1.2-4.2-.3-.4c-1-1.6-1.5-3.5-1.5-5.4 0-5.8 4.8-10.5 10.6-10.5s10.6 4.7 10.6 10.5S21.8 26.1 16 26.1zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.8 5 .8.4 1.4.6 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/>
+    </symbol>
+  </svg>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
